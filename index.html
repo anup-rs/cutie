@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Rashu 💫</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'playfair': ['Playfair Display', 'serif'],
+                        'poppins': ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        'night': '#0a0e27',
+                        'night-light': '#1a1f3d',
+                        'purple-glow': '#6b4c9a',
+                        'star-gold': '#ffd700',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-night text-white overflow-x-hidden font-poppins">
+
+    <!-- Audio Control -->
+    <div class="fixed top-6 right-6 z-50 glass-card p-3 rounded-full cursor-pointer hover:scale-110 transition-transform duration-300" id="musicToggle">
+        <i data-lucide="music" class="w-6 h-6 text-purple-200"></i>
+        <div class="absolute inset-0 rounded-full bg-purple-500 opacity-0 animate-ping" id="musicWave"></div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="fixed top-0 left-0 h-1 bg-gradient-to-r from-purple-600 via-pink-500 to-purple-600 z-50 transition-all duration-300" id="progressBar" style="width: 0%"></div>
+
+    <!-- Star Canvas Background -->
+    <canvas id="starCanvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="fixed inset-0 z-[60] bg-black/95 hidden flex items-center justify-center opacity-0 transition-opacity duration-500">
+        <button id="closeLightbox" class="absolute top-6 right-6 text-white/80 hover:text-white transition-colors">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        <img id="lightboxImg" src="" alt="Memory" class="max-w-[90vw] max-h-[90vh] object-contain rounded-lg shadow-2xl transform scale-95 transition-transform duration-500">
+    </div>
+
+    <!-- Section 1: Hero -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-night via-[#0f1535] to-night opacity-90"></div>
+        
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
+            <div class="mb-6 opacity-0 animate-fade-in-up" style="animation-delay: 0.2s; animation-fill-mode: forwards;">
+                <span class="text-purple-300 text-lg md:text-xl tracking-[0.3em] uppercase font-light">A Love Story</span>
+            </div>
+            
+            <h1 class="font-playfair text-6xl md:text-8xl lg:text-9xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-purple-200 to-purple-400 opacity-0 animate-fade-in-up tracking-tight" style="animation-delay: 0.5s; animation-fill-mode: forwards;">
+                For Rashu <span class="inline-block animate-float">🌙</span>
+            </h1>
+            
+            <p class="font-playfair italic text-xl md:text-3xl text-purple-200/90 mb-12 max-w-2xl mx-auto leading-relaxed opacity-0 animate-fade-in-up" style="animation-delay: 0.8s; animation-fill-mode: forwards;">
+                "In a sky full of stars, I found my universe in you."
+            </p>
+            
+            <button onclick="scrollToSection('timeline')" class="group relative px-8 py-4 bg-transparent overflow-hidden rounded-full opacity-0 animate-fade-in-up" style="animation-delay: 1.1s; animation-fill-mode: forwards;">
+                <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-purple-600/30 to-pink-600/30 blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+                <div class="absolute inset-0 rounded-full border border-purple-400/50 group-hover:border-purple-300 transition-colors duration-300"></div>
+                <span class="relative z-10 flex items-center gap-2 text-purple-100 font-medium tracking-wide group-hover:text-white transition-colors">
+                    Begin Our Story 
+                    <i data-lucide="sparkles" class="w-5 h-5 animate-pulse"></i>
+                </span>
+            </button>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce opacity-50">
+            <i data-lucide="chevron-down" class="w-6 h-6 text-purple-300"></i>
+        </div>
+    </section>
+
+    <!-- Section 2: Timeline -->
+    <section id="timeline" class="relative py-32 px-4 md:px-8">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="font-playfair text-4xl md:text-6xl text-center mb-20 bg-clip-text text-transparent bg-gradient-to-r from-purple-200 to-pink-200 reveal-on-scroll">
+                Our Story
+            </h2>
+
+            <div class="relative">
+                <!-- Timeline Line -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-px bg-gradient-to-b from-purple-500/0 via-purple-500/50 to-purple-500/0 hidden md:block"></div>
+                <div class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 h-full w-px bg-gradient-to-b from-purple-500/0 via-purple-500/50 to-purple-500/0 md:hidden"></div>
+
+                <!-- Event 1 -->
+                <div class="relative mb-24 md:mb-32 reveal-on-scroll">
+                    <div class="md:flex items-center justify-between">
+                        <div class="md:w-5/12 md:text-right pl-20 md:pl-0 md:pr-12">
+                            <div class="glass-card p-8 rounded-2xl hover:transform hover:scale-105 transition-all duration-500 group">
+                                <div class="text-purple-300 text-sm mb-2 tracking-widest uppercase">Chapter One</div>
+                                <h3 class="font-playfair text-2xl md:text-3xl mb-3 text-white group-hover:text-purple-200 transition-colors">✨ The Day We Met</h3>
+                                <p class="text-gray-300 leading-relaxed">That moment when time stood still, and I knew my life was about to change forever. Your smile became my favorite sight.</p>
+                            </div>
+                        </div>
+                        <div class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 -translate-y-1/2 top-1/2 w-4 h-4 rounded-full bg-purple-500 shadow-[0_0_20px_rgba(168,85,247,0.8)] z-10"></div>
+                        <div class="md:w-5/12 md:pl-12 hidden md:block"></div>
+                    </div>
+                </div>
+
+                <!-- Event 2 -->
+                <div class="relative mb-24 md:mb-32 reveal-on-scroll">
+                    <div class="md:flex items-center justify-between">
+                        <div class="md:w-5/12 hidden md:block md:pr-12"></div>
+                        <div class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 -translate-y-1/2 top-1/2 w-4 h-4 rounded-full bg-pink-500 shadow-[0_0_20px_rgba(236,72,153,0.8)] z-10"></div>
+                        <div class="md:w-5/12 md:pl-12 pl-20">
+                            <div class="glass-card p-8 rounded-2xl hover:transform hover:scale-105 transition-all duration-500 group">
+                                <div class="text-pink-300 text-sm mb-2 tracking-widest uppercase">Chapter Two</div>
+                                <h3 class="font-playfair text-2xl md:text-3xl mb-3 text-white group-hover:text-pink-200 transition-colors">🌙 The Realization</h3>
+                                <p class="text-gray-300 leading-relaxed">The moment I realized you weren't just someone special—you were the missing piece I never knew I was searching for.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event 3 -->
+                <div class="relative reveal-on-scroll">
+                    <div class="md:flex items-center justify-between">
+                        <div class="md:w-5/12 md:text-right pl-20 md:pl-0 md:pr-12">
+                            <div class="glass-card p-8 rounded-2xl hover:transform hover:scale-105 transition-all duration-500 group border-purple-400/30">
+                                <div class="text-purple-300 text-sm mb-2 tracking-widest uppercase">Chapter Three</div>
+                                <h3 class="font-playfair text-2xl md:text-3xl mb-3 text-white group-hover:text-purple-200 transition-colors">💖 Forever & Always</h3>
+                                <p class="text-gray-300 leading-relaxed">When I knew with absolute certainty that I want to spend every sunrise and sunset with you, for the rest of my life.</p>
+                            </div>
+                        </div>
+                        <div class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 -translate-y-1/2 top-1/2 w-6 h-6 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 shadow-[0_0_30px_rgba(168,85,247,1)] z-10 animate-pulse"></div>
+                        <div class="md:w-5/12 md:pl-12 hidden md:block"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Photo Gallery -->
+    <section id="gallery" class="relative py-32 px-4 md:px-8 bg-gradient-to-b from-night via-[#0d1230] to-night">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="font-playfair text-4xl md:text-6xl text-center mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-200 to-pink-200 reveal-on-scroll">
+                Kuch Yaadein
+            </h2>
+            <p class="text-center text-gray-400 mb-16 max-w-xl mx-auto reveal-on-scroll">Every picture tells a story of us, frozen in time, glowing with love.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                <!-- Photo 1 -->
+                <div class="group relative overflow-hidden rounded-2xl cursor-pointer reveal-on-scroll" onclick="openLightbox('http://static.photos/nature/640x360/101')">
+                    <div class="aspect-[4/3] overflow-hidden">
+                        <img src="1.jpeg" alt="Memory 1" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-purple-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                        <span class="text-white font-playfair text-lg">Phli Mulaqat</span>
+                    </div>
+                    <div class="absolute inset-0 rounded-2xl border-2 border-purple-400/0 group-hover:border-purple-400/50 transition-all duration-500 shadow-[0_0_30px_rgba(168,85,247,0.3)]"></div>
+                </div>
+
+                <!-- Photo 2 -->
+                <div class="group relative overflow-hidden rounded-2xl cursor-pointer reveal-on-scroll" onclick="openLightbox('http://static.photos/cityscape/640x360/202')">
+                    <div class="aspect-[4/3] overflow-hidden">
+                        <img src="2.jpeg" alt="Memory 2" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-purple-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                        <span class="text-white font-playfair text-lg">Baahon m Baahein</span>
+                    </div>
+                    <div class="absolute inset-0 rounded-2xl border-2 border-purple-400/0 group-hover:border-purple-400/50 transition-all duration-500"></div>
+                </div>
+
+                <!-- Photo 3 -->
+                <div class="group relative overflow-hidden rounded-2xl cursor-pointer reveal-on-scroll" onclick="openLightbox('http://static.photos/minimal/640x360/303')">
+                    <div class="aspect-[4/3] overflow-hidden">
+                        <img src="3.jpeg" alt="Memory 3" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-purple-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                        <span class="text-white font-playfair text-lg">🤌✨</span>
+                    </div>
+                    <div class="absolute inset-0 rounded-2xl border-2 border-purple-400/0 group-hover:border-purple-400/50 transition-all duration-500"></div>
+                </div>
+
+                <!-- Photo 4 -->
+                <div class="group relative overflow-hidden rounded-2xl cursor-pointer reveal-on-scroll" onclick="openLightbox('http://static.photos/travel/640x360/404')">
+                    <div class="aspect-[4/3] overflow-hidden">
+                        <img src="4.jpeg" alt="Memory 4" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-purple-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                        <span class="text-white font-playfair text-lg">Sirf m aur meri 🫣</span>
+                    </div>
+                    <div class="absolute inset-0 rounded-2xl border-2 border-purple-400/0 group-hover:border-purple-400/50 transition-all duration-500"></div>
+                </div>
+
+                <!-- Photo 5 -->
+                <div class="group relative overflow-hidden rounded-2xl cursor-pointer reveal-on-scroll" onclick="openLightbox('http://static.photos/food/640x360/505')">
+                    <div class="aspect-[4/3] overflow-hidden">
+                        <img src="5.jpeg" alt="Memory 5" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-purple-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                        <span class="text-white font-playfair text-lg">Haaye 💕✨</span>
+                    </div>
+                    <div class="absolute inset-0 rounded-2xl border-2 border-purple-400/0 group-hover:border-purple-400/50 transition-all duration-500"></div>
+                </div>
+
+                <!-- Photo 6 -->
+                <div class="group relative overflow-hidden rounded-2xl cursor-pointer reveal-on-scroll" onclick="openLightbox('http://static.photos/outdoor/640x360/606')">
+                    <div class="aspect-[4/3] overflow-hidden">
+                        <img src="6.jpeg" alt="Memory 6" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-purple-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                        <span class="text-white font-playfair text-lg">Meri Biwi in Saree 🫣</span>
+                    </div>
+                    <div class="absolute inset-0 rounded-2xl border-2 border-purple-400/0 group-hover:border-purple-400/50 transition-all duration-500"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Love Message -->
+    <section id="message" class="relative py-32 px-4 md:px-8 min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- Floating Particles Container -->
+        <div id="floatingHearts" class="absolute inset-0 pointer-events-none"></div>
+
+        <div class="max-w-3xl mx-auto relative z-10 reveal-on-scroll">
+            <div class="glass-card p-8 md:p-16 rounded-3xl border border-purple-400/20 shadow-[0_0_60px_rgba(168,85,247,0.15)] text-center relative overflow-hidden">
+                <!-- Decorative Elements -->
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-50"></div>
+                <div class="absolute -top-20 -left-20 w-40 h-40 bg-purple-600/20 rounded-full blur-3xl"></div>
+                <div class="absolute -bottom-20 -right-20 w-40 h-40 bg-pink-600/20 rounded-full blur-3xl"></div>
+
+                <i data-lucide="heart" class="w-12 h-12 text-purple-400 mx-auto mb-8 animate-pulse"></i>
+                
+                <blockquote class="font-playfair text-2xl md:text-4xl leading-relaxed text-white/90 italic mb-8">
+                    "From the moment you came into my life,<br>
+                    everything started making sense.<br>
+                    The chaos turned into calm,<br>
+                    and ordinary moments became magical."
+                </blockquote>
+
+                <div class="w-16 h-px bg-gradient-to-r from-transparent via-purple-400 to-transparent mx-auto mb-8"></div>
+
+                <p class="text-lg md:text-xl text-purple-200/80 leading-relaxed font-light">
+                    I don't promise a perfect life,<br>
+                    but I promise to hold your hand<br>
+                    through every imperfect moment.
+                </p>
+
+                <div class="mt-8 flex justify-center gap-2">
+                    <span class="text-2xl animate-float" style="animation-delay: 0s;">✨</span>
+                    <span class="text-2xl animate-float" style="animation-delay: 0.5s;">💫</span>
+                    <span class="text-2xl animate-float" style="animation-delay: 1s;">✨</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Proposal -->
+    <section id="proposal" class="relative py-32 px-4 md:px-8 min-h-screen flex items-center justify-center">
+        <div class="absolute inset-0 bg-gradient-to-b from-night via-[#1a1030] to-night"></div>
+        
+        <!-- Dramatic Lighting -->
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-600/20 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="max-w-4xl mx-auto text-center relative z-10 reveal-on-scroll">
+            <div class="mb-8 inline-block">
+                <i data-lucide="sparkles" class="w-16 h-16 text-purple-400 mx-auto animate-pulse"></i>
+            </div>
+
+            <h2 class="font-playfair text-5xl md:text-7xl lg:text-8xl mb-8 bg-clip-text text-transparent bg-gradient-to-r from-white via-purple-200 to-pink-200 leading-tight">
+                Rashu, will you<br>stay with me forever?
+            </h2>
+
+            <p class="text-xl md:text-2xl text-purple-200/70 mb-16 font-light tracking-wide">
+                I want to wake up next to you every morning<br>
+                until our hair turns silver.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                <button onclick="handleProposal('yes')" class="group relative px-12 py-6 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full overflow-hidden transition-all duration-300 hover:shadow-[0_0_40px_rgba(168,85,247,0.5)] hover:scale-105">
+                    <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                    <span class="relative z-10 flex items-center gap-3 text-xl font-semibold text-white">
+                        <i data-lucide="heart" class="w-6 h-6 fill-current"></i>
+                        Yes, Forever
+                    </span>
+                </button>
+
+                <button onclick="handleProposal('of-course')" class="group relative px-12 py-6 bg-transparent border-2 border-purple-400/50 rounded-full overflow-hidden transition-all duration-300 hover:border-purple-400 hover:shadow-[0_0_40px_rgba(168,85,247,0.3)] hover:scale-105">
+                    <div class="absolute inset-0 bg-purple-600/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                    <span class="relative z-10 flex items-center gap-3 text-xl font-semibold text-purple-100 group-hover:text-white">
+                        <i data-lucide="gem" class="w-6 h-6"></i>
+                        Of Course, Yes
+                    </span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed inset-0 z-[70] hidden items-center justify-center bg-night/95 backdrop-blur-sm">
+        <canvas id="celebrationCanvas" class="absolute inset-0 pointer-events-none"></canvas>
+        <div class="relative z-10 text-center px-4 transform scale-0 transition-transform duration-1000" id="successContent">
+            <div class="mb-8 animate-float">
+                <i data-lucide="heart" class="w-24 h-24 text-pink-500 fill-current mx-auto drop-shadow-[0_0_30px_rgba(236,72,153,0.8)]"></i>
+            </div>
+            <h2 class="font-playfair text-4xl md:text-6xl lg:text-7xl text-white mb-6 leading-tight">
+                You just made me<br>the happiest person<br>alive. 💍
+            </h2>
+            <p class="text-xl md:text-2xl text-purple-200/80 font-light mb-12">
+                Forever starts now, my love.
+            </p>
+            <button onclick="closeSuccessModal()" class="px-8 py-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/30 transition-all duration-300 text-white">
+                Continue to Our Future
+            </button>
+        </div>
+    </div>
+
+    <!-- Section 6: Final -->
+    <section id="final" class="relative py-32 px-4 md:px-8 min-h-[70vh] flex items-center justify-center overflow-hidden">
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <div class="mb-12 relative inline-block">
+                <div class="absolute inset-0 bg-pink-500/30 blur-3xl rounded-full animate-pulse"></div>
+                <i data-lucide="heart" class="w-20 h-20 text-pink-400 fill-current relative z-10 animate-float mx-auto drop-shadow-[0_0_20px_rgba(236,72,153,0.6)]"></i>
+            </div>
+
+            <h2 class="font-playfair text-3xl md:text-5xl lg:text-6xl text-white leading-tight mb-8 reveal-on-scroll">
+                "Under the same sky,<br>
+                in every lifetime,<br>
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400">I will still choose you.</span>"
+            </h2>
+
+            <div class="mt-16 pt-8 border-t border-white/10">
+                <p class="text-gray-400 text-sm tracking-[0.2em] uppercase">For Rashu — With all my love, forever</p>
+            </div>
+        </div>
+
+        <!-- Animated Stars Background -->
+        <div class="absolute inset-0 pointer-events-none">
+            <div class="shooting-star absolute top-20 left-10 w-32 h-px bg-gradient-to-r from-transparent via-white to-transparent opacity-0 animate-shooting-star" style="animation-delay: 0s;"></div>
+            <div class="shooting-star absolute top-40 right-20 w-24 h-px bg-gradient-to-r from-transparent via-purple-300 to-transparent opacity-0 animate-shooting-star" style="animation-delay: 3s;"></div>
+            <div class="shooting-star absolute bottom-40 left-1/4 w-40 h-px bg-gradient-to-r from-transparent via-pink-300 to-transparent opacity-0 animate-shooting-star" style="animation-delay: 6s;"></div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
